@@ -8,7 +8,7 @@ project_root = os.path.dirname(__file__)
 template_path = os.path.join(project_root, './')
 app = Flask(__name__, template_folder=template_path)
 
-g.teams = f.load_teams("teams.cfg")
+g.teams = f.create_teams("teams.cfg")
 g.league = f.create_league(g.teams)
 g.ranking = f.create_ranking(g.teams)
 
@@ -30,6 +30,7 @@ def formulari_lliga_post():
     visit = request.form["visiting"]
     visit_goals = request.form["visiting_number"]
     f.update_league(loc, loc_goals, visit, visit_goals)
+    f.calculate_ranking(loc, loc_goals, visit, visit_goals)
 
     return render_template('templates/lliga.html', teams=g.teams, league=g.league)
 
@@ -38,7 +39,7 @@ def ranking():
   return render_template('templates/ranking.html', teams=g.teams, league=g.league)
 
 @app.route('/ranking', methods=['POST'])
-def formulari_ranking_post():
+def ranking_post():
   pass
 
 # arranquem l'aplicació
