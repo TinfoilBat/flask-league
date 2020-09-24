@@ -38,8 +38,8 @@ def create_ranking(*team_list: List[str]) -> Dict:
     return ranking_dict
 
 
-def update_league(local_team: str, visiting_team: str, local_goals: str,
-visiting_goals: str) -> None:
+def update_league(local_team: str, local_goals: str, visiting_team: str,
+                  visiting_goals: str) -> None:
     """ Update league values """
     g.league[local_team][visiting_team] = local_goals
     g.league[visiting_team][local_team] = visiting_goals
