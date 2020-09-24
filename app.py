@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
-import functions.f
+import functions.f as f
+import functions.globals as g
 import os
 
 
@@ -7,6 +8,9 @@ project_root = os.path.dirname(__file__)
 template_path = os.path.join(project_root, './')
 app = Flask(__name__, template_folder=template_path)
 
+g.teams = f.load_teams("teams.cfg")
+g.league = f.create_league(g.teams)
+g.ranking = f.create_ranking(g.teams)
 
 @app.route('/')
 def index():
@@ -15,15 +19,27 @@ def index():
 
 @app.route('/lliga')
 def lliga():
-    return render_template('templates/lliga.html')
+    return render_template('templates/lliga.html', teams=g.teams, league=g.league)
 
 
 @app.route('/lliga', methods=['POST'])
-def formulari_post():
+def formulari_lliga_post():
     # processem les dades del formulari
-    nom = request.form["nom"]
+    loc = request.form["local"]
+    loc_goals = request.form["local_number"]
+    visit = request.form["visiting"]
+    visit_goals = request.form["visiting_number"]
+    
+    return render_template('templates/lliga.html', teams=g.teams, league=g.league)
 
-    return "Salut, {}".format(nom)
+@app.route('/ranking')
+def ranking():
+  return render_template('templates/ranking.html', teams=g.teams, league=g.league)
+
+@app.route('/ranking', methods=['POST'])
+def formulari_ranking_post():
+  pass
 
 # arranquem l'aplicació
-app.run(debug=True)
+if __name__ == "__main__":
+  app.run(debug=True)

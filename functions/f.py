@@ -1,4 +1,5 @@
 from typing import List, Tuple, Dict
+import functions.globals as g
 
 
 def load_teams(teams_file: str) -> List[str]:
@@ -12,19 +13,37 @@ def load_teams(teams_file: str) -> List[str]:
     return team_list
 
 
-def create_league(team_list: List[str]) -> Tuple[Dict, Dict]:
+def create_league(*team_list: List[str]) -> Dict:
     """ Creates the league matrix. """
     league_dict = {}
+
+    for local_team in g.teams:
+        league_dict[local_team] = {}
+        for visiting_team in g.teams:
+            if visiting_team == local_team:
+                league_dict[local_team][visiting_team] = "X"
+            else:
+                league_dict[local_team][visiting_team] = ""
+
+    return league_dict
+
+
+def create_ranking(*team_list: List[str]) -> Dict:
+    """ Creates the ranking dictionary. """
     ranking_dict = {}
 
-    for local_team in team_list:
-        league_dict[local_team] = {}
+    for local_team in g.teams:
         ranking_dict[local_team] = 0
-        for visitant_team in team_list:
-            league_dict[local_team][visitant_team] = None
 
-    return league_dict, ranking_dict
+    return ranking_dict
 
 
-teams = load_teams("teams.cfg")
-league, matrix = create_league(teams)
+def update_league(local_team: str, visiting_team: str, local_goals: str,
+visiting_goals: str) -> None:
+    """ Update league values """
+    g.league[local_team][visiting_team] = local_goals
+    g.league[visiting_team][local_team] = visiting_goals
+
+
+def update_ranking():
+    pass

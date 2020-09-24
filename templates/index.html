@@ -7,16 +7,12 @@
     <title>Index</title>
   </head>
   <body>
-    <nav>
-      <a href="/">Index</a>
-      <a href="/formulari">Formulari</a>
-      <a href="/equips">Selector d'equips</a>
-    </nav>
+    {% include "templates/navbar.html" ignore missing %}
     <h1>Benvingut!</h1>
     <h2>Petit aplicatiu web escrit amb Flask</h2>
     <p>
       Utilitza el menú de navegació de dalt per a moure't per les diferents
-      funcionalitats d'aquest petit aplicatiu
+      funcionalitats d'aquest aplicatiu
     </p>
   </body>
 </html>
