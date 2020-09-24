@@ -1,0 +1,26 @@
+{% extends "templates/lligaRanking_template.html" %} {% block navbar %}
+{{super()}} {% endblock %}
+<table>
+  {% block tablehead %}
+  <thead>
+    <tr>
+      <th></th>
+      <th>Gols a favor</th>
+      <th>Gols en contra</th>
+      <th>Balanç</th>
+      <th>Rànking</th>
+    </tr>
+  </thead>
+  {% endblock %} {% block tablebody %}
+  <tbody>
+    {% for local in teams %}
+    <tr>
+      <th>{{local}}</th>
+      <th>a favor</th>
+      <th>en contra</th>
+      <th>Balanç</th>
+      <th>Rànking</th>
+    </tr>
+    {% endfor %}
+  {% endblock %}
+</table>
