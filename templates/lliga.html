@@ -1,0 +1,67 @@
+{% extends "templates/lligaRanking_template.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    {% block tablehead %}
+    <thead>
+      <tr>
+        <th></th>
+        {% for team in teams%}
+        <th>{{team}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    {% endblock %}
+    {% block tablebody %}
+    <tbody>
+      {% for local in teams %}
+      <tr>
+        <th>
+          {{local}}
+          {% for visiting in league[local] %}
+          {% if league[local][visiting] == None %}
+        <td></td>
+        {% else %}
+        <td>{{league[local][visiting]}}</td>
+        {% endif %}
+        {% endfor %}
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% endblock %}
+  </table>
+  {% block selector%}
+  <br><br><br><br>
+  <form action="/lliga" method="post">
+  <label for="local">Escull un equip local:</label>
+  <br><br>
+  <select name="local" id="l">
+    {% for local in teams %}
+    <option value="{{local}}">{{local}}</option>
+    {% endfor %}
+  </select>
+    <input type="number" name="local_number" id="l_g_n">
+  <br><br>
+  <label for="visiting">Escull un equip visitant:</label>
+  <br><br>
+  <select name="visiting" id="v">
+        {% for visiting in teams %}
+    <option value="{{visiting}}">{{visiting}}</option>
+    {% endfor %}
+  </select>
+  <input type="number" name="visiting_number" id="v_g_n">
+  <br><br><br>
+  <button type="submit">Actualitza resultats</button>
+</form>
+  {% endblock %}
+</body>
+
+</html>

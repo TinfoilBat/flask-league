@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="static/styles/water.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block title %}<title>Document</title>{% endblock %}
+</head>
+
+<body>
+  {% block navbar %}
+  {% include "templates/navbar.html"%}
+  {% endblock %}
+  <table>
+    {% block tablehead %}
+    <thead>
+      <tr>
+        <th></th>
+        {% for team in teams%}
+          <th>{{team}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    {% endblock %}
+    {% block tablebody %}
+    <tbody>
+      {% for local in teams %}
+      <tr>
+        <th>
+          {{local}}
+          {% for visiting in league[local] %}
+          {% endfor %}
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% endblock %}
+
+  </table>
+  {% block selector %}
+  {%endblock%}
+</body>
+
+</html>

@@ -29,7 +29,8 @@ def formulari_lliga_post():
     loc_goals = request.form["local_number"]
     visit = request.form["visiting"]
     visit_goals = request.form["visiting_number"]
-    
+    f.update_league(loc, loc_goals, visit, visit_goals)
+
     return render_template('templates/lliga.html', teams=g.teams, league=g.league)
 
 @app.route('/ranking')
