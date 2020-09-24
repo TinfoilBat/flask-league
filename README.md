@@ -37,6 +37,6 @@ $ flask run
 
 ## Support
 
-Bugs and issues are tracked on [Github Issues](https://github.com/aleexnl/league-in-flask/issues). In case of trouble, please check there if your issue has already been reported. If you spotted it first, help us smash it by providing detailed and welcomed feedback.
+Bugs and issues are tracked on [Github Issues](https://github.com/TinfoilBat/flask-league/issues). In case of trouble, please check there if your issue has already been reported. If you spotted it first, help us smash it by providing detailed and welcomed feedback.
 
 Do not contact contributors directly about support or help with technical issues.
