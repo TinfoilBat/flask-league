@@ -48,7 +48,7 @@
     <option value="{{local}}">{{local}}</option>
     {% endfor %}
   </select>
-    <input type="number" name="local_number" id="l_g_n">
+    <input type="number" name="local_number" min="0" id="l_g_n">
   <br><br>
   <label for="visiting">Escull un equip visitant:</label>
   <br><br>
@@ -57,11 +57,12 @@
     <option value="{{visiting}}">{{visiting}}</option>
     {% endfor %}
   </select>
-  <input type="number" name="visiting_number" id="v_g_n">
+  <input type="number" name="visiting_number" min="0" id="v_g_n">
   <br><br><br>
   <button type="submit">Actualitza resultats</button>
 </form>
-  {% endblock %}
+<br><br><br>
+{% endblock %}
 </body>
 
 </html>

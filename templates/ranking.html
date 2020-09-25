@@ -5,10 +5,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>Gols a favor</th>
-      <th>Gols en contra</th>
-      <th>Balanç</th>
-      <th>Rànking</th>
+      <th>Partits guanyats</th>
     </tr>
   </thead>
   {% endblock %} {% block tablebody %}
@@ -16,10 +13,8 @@
     {% for local in teams %}
     <tr>
       <th>{{local}}</th>
-      <th>a favor</th>
-      <th>en contra</th>
-      <th>Balanç</th>
-      <th>Rànking</th>
+      
+      <th>{{ranking[local]}}</th>
     </tr>
     {% endfor %}
   {% endblock %}

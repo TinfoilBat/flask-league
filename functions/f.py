@@ -13,9 +13,8 @@ def create_teams(teams_file: str) -> List[str]:
     return team_list
 
 
-def create_league(*team_list: List[str]) -> Dict:
+def create_league() -> None:
     """ Creates the league matrix. """
-    
     for local_team in g.teams:
         g.league[local_team] = {}
         for visiting_team in g.teams:
@@ -24,31 +23,26 @@ def create_league(*team_list: List[str]) -> Dict:
             else:
                 g.league[local_team][visiting_team] = ""
 
-    return g.league
-
-
-def create_ranking(*team_list: List[str]) -> Dict:
+def create_ranking() -> None:
     """ Creates the ranking dictionary. """
-    
     for local_team in g.teams:
         g.ranking[local_team] = 0
-
-    return g.ranking
 
 
 def update_league(local_team: str, local_goals: str, visiting_team: str,
                   visiting_goals: str) -> None:
     """ Update league values. """
-    g.league[local_team][visiting_team] = local_goals
-    g.league[visiting_team][local_team] = visiting_goals
+    if local_team == visiting_team:
+      pass
+    else:
+      g.league[local_team][visiting_team] = (int(local_goals), int(visiting_goals))
+      g.league[visiting_team][local_team] = (int(visiting_goals), int(local_goals))
 
 
 def update_ranking(local_team: str, local_goals: str, visiting_team: str,
                   visiting_goals: str) -> None:
-    """ Update the ranking. """
-    pass
-
-def calculate_ranking(local_team: str, local_goals: str, visiting_team: str,
-                  visiting_goals: str) -> None:
-    """ Calculate the ranking. """
-    pass
+  """ Determines ranking position according to match result """
+  if int(local_goals) > int(visiting_goals):
+    g.ranking[local_team] += 1
+  elif int(local_goals) < int(visiting_goals):
+    g.ranking[visiting_team] += 1
